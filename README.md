@@ -56,6 +56,10 @@ flowchart TD
 	D --> D5[Gestao completa de reservas]
 ```
 
+## Diagrama de Entidades
+
+![Diagrama de Entidades](./diagrama_entidades.png)
+
 ## Pré-requisitos
 
 - Node.js 20+
