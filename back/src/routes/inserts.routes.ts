@@ -781,6 +781,15 @@ router.post("/reservas", validate(reservaSchema), async (req: Request, res: Resp
   try {
     const { id_barbeiro, id_cliente, id_servico, data, horario_inicial } = req.body;
 
+    const reservaDate = new Date(`${data}T00:00:00`);
+    const now = new Date();
+    const todayNoTime = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    if (reservaDate < todayNoTime) {
+      return res.status(422).json({
+        message: "Data da reserva invalida. Nao pode ser anterior a hoje.",
+      });
+    }
+
     if (req.user?.role === "cliente" && Number(req.user.sub) !== id_cliente) {
       return res.status(403).json({
         message: "Cliente pode criar reservas apenas para si.",
