@@ -1024,7 +1024,7 @@ export default function Dashboard({ onOpenSchedulePage, clientNotice, onConsumeC
                 alignItems: "start",
                 width: "100%",
                 maxWidth: "100%",
-                overflow: "hidden",
+                overflowX: "hidden",
                 gridTemplateColumns: { xs: "1fr", lg: "220px minmax(0, 1fr)" },
               }}
             >
@@ -1171,7 +1171,7 @@ export default function Dashboard({ onOpenSchedulePage, clientNotice, onConsumeC
               <Box
                 sx={{
                   overflowX: "hidden",
-                  overflowY: "hidden",
+                  overflowY: "visible",
                   width: "100%",
                   maxWidth: "100%",
                 }}

@@ -5,9 +5,13 @@
   "main": "dist/server.js",
   "type": "module",
   "scripts": {
+    "setup": "tsx scripts/setup.ts",
     "build": "tsc",
     "dev": "tsx watch src/server.ts",
     "seed": "tsx src/seed.ts",
+    "docker:seed": "docker compose run --rm --build seed",
+    "docker:up": "npm run setup && docker compose up -d postgres && npm run docker:seed && docker compose up --build -d backend-app",
+    "docker:down": "docker compose down",
     "db:up": "tsx scripts/db-up.ts",
     "db:down": "docker compose down",
     "db:reset": "docker compose down -v",

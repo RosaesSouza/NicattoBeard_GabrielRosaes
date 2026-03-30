@@ -8,35 +8,55 @@ services:
     environment:
       PORT: 3001
       DB_HOST: postgres
-      DB_PORT: 5432
-      DB_USER: root
-      DB_PASS: teste
-      DB_NAME: teste
-      NODE_ENV: development
-      JWT_SECRET: uma_chave_bem_grande_aqui_acesso
+      DB_PORT: ${DB_PORT:-5432}
+      DB_USER: ${DB_USER:-root}
+      DB_PASS: ${DB_PASS:-teste}
+      DB_NAME: ${DB_NAME:-teste}
+      NODE_ENV: ${NODE_ENV:-development}
+      JWT_SECRET: ${JWT_SECRET:-change-me}
       JWT_EXPIRES_IN: 15m
-      FRONTEND_URL: http://localhost:8080
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:8080}
     ports:
       - "3001:3001"
     depends_on:
       postgres:
         condition: service_healthy
 
+  seed:
+    build:
+      context: .
+      dockerfile: dockerfile
+    environment:
+      DB_HOST: postgres
+      DB_PORT: ${DB_PORT:-5432}
+      DB_USER: ${DB_USER:-root}
+      DB_PASS: ${DB_PASS:-teste}
+      DB_NAME: ${DB_NAME:-teste}
+      NODE_ENV: ${NODE_ENV:-development}
+      JWT_SECRET: ${JWT_SECRET:-change-me}
+      JWT_EXPIRES_IN: 15m
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:8080}
+    command: ["npm", "run", "seed"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: "no"
+
   postgres:
     image: postgres:16-alpine
     container_name: nicatto-beard-postgres
     restart: unless-stopped
     environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: teste
-      POSTGRES_DB: teste
+      POSTGRES_USER: ${DB_USER:-root}
+      POSTGRES_PASSWORD: ${DB_PASS:-teste}
+      POSTGRES_DB: ${DB_NAME:-teste}
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./db/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U root -d teste"]
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-root} -d ${DB_NAME:-teste}"]
       interval: 5s
       timeout: 5s
       retries: 10

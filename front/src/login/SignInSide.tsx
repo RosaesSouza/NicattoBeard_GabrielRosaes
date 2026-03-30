@@ -13,15 +13,6 @@ export default function SignInSide(props: { disableCustomTheme?: boolean; onLogi
   const [mode, setMode] = React.useState<'login' | 'register' | null>(null);
   const getCurrentYear = () => new Date().getFullYear();
 
-  React.useEffect(() => {
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-    };
-  }, []);
-
   return (
     <>
       <ColorModeSelect
@@ -36,10 +27,12 @@ export default function SignInSide(props: { disableCustomTheme?: boolean; onLogi
         direction="column"
         component="main"
         sx={{
-          minHeight: '100vh',
+          minHeight: { xs: '100dvh', md: '100vh' },
           justifyContent: 'space-between',
           position: 'relative',
-          overflow: 'hidden',
+          overflowX: 'hidden',
+          overflowY: { xs: 'auto', md: 'hidden' },
+          WebkitOverflowScrolling: 'touch',
           '&::before': {
             content: '""',
             position: 'absolute',

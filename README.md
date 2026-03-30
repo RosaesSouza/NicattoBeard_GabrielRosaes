@@ -73,8 +73,9 @@ Em um terminal:
 
 1. cd back
 2. npm install
-3. npm run db:up
-4. npm run dev
+3. npm run setup
+4. npm run db:up
+5. npm run dev
 
 API padrão:
 
@@ -95,7 +96,9 @@ Vite em porta disponível (ex.: 5173, 5174, 5175...).
 ### Backend + banco
 
 1. cd back
-2. docker compose up -d --build
+2. npm run docker:up
+
+Obs.: esse comando ja executa setup e seed automaticamente.
 
 - API: http://localhost:3001
 - PostgreSQL: localhost:5432
@@ -109,7 +112,7 @@ Vite em porta disponível (ex.: 5173, 5174, 5175...).
 
 ### Encerrar
 
-- cd back && docker compose down
+- cd back && npm run docker:down
 - cd front && docker compose down
 
 ## Observações 

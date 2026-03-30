@@ -132,7 +132,8 @@ function AppContent() {
         width: "100%",
         maxWidth: "100%",
         overflowX: "hidden",
-        minHeight: "100vh",
+        overflowY: { xs: "auto", md: "visible" },
+        minHeight: { xs: "100dvh", md: "100vh" },
         flexDirection: { xs: "column", md: "row" },
       }}
     >
@@ -143,7 +144,7 @@ function AppContent() {
         onSelectTab={handleSelectCrudTab}
         onOpenAccount={() => navigate("/account")}
       />
-      <Box sx={{ flex: 1, minWidth: 0, width: "100%", maxWidth: "100%", overflowX: "hidden" }}>
+      <Box sx={{ flex: 1, minWidth: 0, width: "100%", maxWidth: "100%", overflowX: "hidden", overflowY: { xs: "auto", md: "visible" } }}>
         <Box className="fade-in-page">
           <Routes>
             <Route path="/dashboard" element={<Dashboard onOpenSchedulePage={() => navigate("/schedule")} />} />
