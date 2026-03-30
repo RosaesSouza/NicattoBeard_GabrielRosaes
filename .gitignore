@@ -31,3 +31,6 @@ front/.env
 front/.env.*
 back/.env
 back/.env.*
+!.env.example
+!front/.env.example
+!back/.env.example
