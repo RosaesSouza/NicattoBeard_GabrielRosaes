@@ -1,0 +1,13 @@
+services:
+  frontend-app:
+    build:
+      context: .
+      dockerfile: dockerfile
+    container_name: nicatto_beard
+    restart: always
+    networks:
+      - infra_web-public
+
+networks:
+  infra_web-public:
+    external: true

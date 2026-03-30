@@ -1,0 +1,33 @@
+@keyframes fadeInPage {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes softPulse {
+  0% {
+    opacity: 0.45;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.45;
+    transform: scale(0.98);
+  }
+}
+
+.fade-in-page {
+  animation: fadeInPage 320ms ease-out both;
+}
+
+.soft-pulse {
+  animation: softPulse 1500ms ease-in-out infinite;
+}

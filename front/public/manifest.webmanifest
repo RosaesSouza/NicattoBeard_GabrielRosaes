@@ -1,0 +1,26 @@
+{
+  "name": "Nicatto Beard",
+  "short_name": "Nicatto",
+  "start_url": "/",
+  "display": "standalone",
+  "description": "Sistema de gerenciamento Nicatto Beard em formato PWA.",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "theme_color": "#01325f",
+  "background_color": "#ffffff",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
